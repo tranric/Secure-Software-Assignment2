@@ -60,23 +60,28 @@ return run_query($dbconn, $query);
 }
 
 function delete_article($dbconn, $aid) {
-	$query= "DELETE FROM articles WHERE aid='".$aid."'";
-	return run_query($dbconn, $query);
+	$username = $_SESSION['username'];
+	$result = articleLog($dbconn,"deleted article",$username,$aid);
+	$result = pg_prepare($dbconn,"","DELETE FROM articles WHERE aid=$1");
+	$result = pg_execute($dbconn,"",array(htmlspecialchars($aid)));
+	return $result;
 }
 
 function add_article($dbconn, $title, $content, $author) {
+	$username = $_SESSION['username'];
+	$result = articleLog($dbconn,"article created",$username,$aid);
 	$stub = substr($content, 0, 30);
 	$aid = str_replace(" ", "-", strtolower($title));
-	$query="
-		INSERT INTO
-		articles
-		(aid, title, author, stub, content) 
-		VALUES
-		('$aid', '$title', $author, '$stub', '$content')";
-	return run_query($dbconn, $query);
+	$result = pg_prepare($dbconn,"","insert into articles(aid, title, author, stub, content)
+		values($1,$2,$3,$4,$5)");
+	$result = pg_execute($dbconn,"",array(htmlspecialchars($aid),htmlspecialchars($title),
+		htmlspecialchars($author),htmlspecialchars($stub),htmlspecialchars($content)));
+	return $result;
 }
 
 function update_article($dbconn, $title, $content, $aid) {
+	$username = $_SESSION['username'];
+	$result = articleLog($dbconn,"updated article",$username,$aid);
 	$query=
 		"UPDATE articles
 		SET 
