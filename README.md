@@ -35,3 +35,4 @@ Missing role-based access control enforcement and management (i.e. Blog authors 
 * Implement database caching using memcachd. 
 * Implement persistent session management using redis.
 * Allow Articles to be written using either some simple HTML formatting tags (like h1, ol, strong, etc) or Markdown but still prevent the use of malicious JavaScript in articles. 
+# Secure-Software-Assignment2
