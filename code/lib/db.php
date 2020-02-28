@@ -180,7 +180,7 @@ function authenticate_user($dbconn, $username, $password) {
 		WHERE
 		username='".$_POST['username']."'
 		AND
-		password='".$_POST['password']."'
+		password=crypt('".$_POST['password']."', password)
 		LIMIT 1";
 	return run_query($dbconn, $query);
 }

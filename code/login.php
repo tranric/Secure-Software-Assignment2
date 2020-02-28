@@ -1,6 +1,5 @@
 <?php include("templates/page_header.php");?>
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$username = 'username';
 	$password = 'password';
