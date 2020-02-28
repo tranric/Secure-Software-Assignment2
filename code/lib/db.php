@@ -61,7 +61,6 @@ return run_query($dbconn, $query);
 
 function delete_article($dbconn, $aid) {
 	$username = $_SESSION['username'];
-	$result = articleLog($dbconn,"deleted article",$username,$aid);
 	$result = pg_prepare($dbconn,"","DELETE FROM articles WHERE aid=$1");
 	$result = pg_execute($dbconn,"",array(htmlspecialchars($aid)));
 	return $result;
@@ -69,7 +68,6 @@ function delete_article($dbconn, $aid) {
 
 function add_article($dbconn, $title, $content, $author) {
 	$username = $_SESSION['username'];
-	$result = articleLog($dbconn,"article created",$username,$aid);
 	$stub = substr($content, 0, 30);
 	$aid = str_replace(" ", "-", strtolower($title));
 	$result = pg_prepare($dbconn,"","insert into articles(aid, title, author, stub, content)
@@ -81,7 +79,6 @@ function add_article($dbconn, $title, $content, $author) {
 
 function update_article($dbconn, $title, $content, $aid) {
 	$username = $_SESSION['username'];
-	$result = articleLog($dbconn,"updated article",$username,$aid);
 	$query=
 		"UPDATE articles
 		SET 
