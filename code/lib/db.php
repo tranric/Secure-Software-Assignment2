@@ -33,8 +33,71 @@ function log_user_action($dbconn, $username, $action){
 }
 
 //database functions
-function get_article_list($dbconn){
-	$query= 
+#function get_article_list($dbconn){
+function get_article_list($dbconn, $username){
+	#gets role from username
+	$role = pg_prepare($dbconn,"","select role from authors where username =$1");
+	$role = pg_execute($dbconn,"",array($username));
+	/*
+	
+	#if admin use same statement showing all
+	if ($role =='admin'){
+		#$result = pg_prepare($dbconn,"","SELECT 
+		$query = "SELECT 
+		articles.created_on AS DATE,
+		articles.aid as aid,
+		articles.title as title,
+		authors.username as author,
+		articles.stub as stub
+		FROM articles INNER JOIN authors ON
+		articles.author = authors.id
+		ORDER BY date DESC");
+		#$result = pg_execute($dbconn,"",array());
+		#return $result;
+		return run_query($dbconn, $query);
+	}
+	#else show only where articles were created by said user.
+	else {
+		#$result = pg_prepare($dbconn,"","select 
+		$query = "select 
+		articles.created_on as date,
+		articles.aid as aid,
+		articles.title as title,
+		articles.author as author,
+		articles.stub as stub
+		FROM 
+		articles 
+		INNER JOIN 
+		authors ON articles.author = authors.id
+		WHERE username = '".$_POST['username']."'
+		ORDER BY
+		date DESC");
+		#$result = pg_execute($dbconn,"",array($role));
+		#return $result;
+		return run_query($dbconn, $query);
+	}
+	*/
+	
+		$query= 
+		"SELECT 
+		articles.created_on as date,
+		articles.aid as aid,
+		articles.title as title,
+		authors.username as author,
+		articles.stub as stub
+		FROM
+		articles
+		INNER JOIN
+		authors ON articles.author=authors.id
+		ORDER BY
+		date DESC";
+return run_query($dbconn, $query);
+
+
+}
+
+function get_article_list_index_page($dbconn){
+		$query= 
 		"SELECT 
 		articles.created_on as date,
 		articles.aid as aid,
@@ -131,4 +194,3 @@ function new_user($dbconn,$username,$password){
 	return $result;
 }
 ?>
-
