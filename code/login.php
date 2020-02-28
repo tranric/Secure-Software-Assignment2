@@ -4,6 +4,7 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$result = authenticate_user($dbconn, $_POST['username'], $_POST['password']);
 	if (pg_num_rows($result) == 1) {
+		log_user_action($dbconn, $_POST['username'], "Login");
 		$_SESSION['username'] = $_POST['username'];
 		$_SESSION['authenticated'] = True;
 		$_SESSION['id'] = pg_fetch_array($result)['id'];

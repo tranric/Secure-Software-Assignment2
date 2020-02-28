@@ -102,5 +102,14 @@ function authenticate_user($dbconn, $username, $password) {
 		password='".$_POST['password']."'
 		LIMIT 1";
 	return run_query($dbconn, $query);
+}
+
+function log_user_action($dbconn, $username, $action){
+	$query=
+		"INSERT INTO
+		action_log
+		VALUES
+		('".$_POST['username']."', '$action', current_timestamp)";
+	return run_query($dbconn, $query);
 }	
 ?>
