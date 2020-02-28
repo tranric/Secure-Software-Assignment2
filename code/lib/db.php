@@ -22,6 +22,16 @@ function run_query($dbconn, $query) {
 	return $result;
 }
 
+//Logging Function
+function log_user_action($dbconn, $username, $action){
+	$query=
+		"INSERT INTO
+		action_log
+		VALUES
+		('".$_POST['username']."', '$action', current_timestamp)";
+	return run_query($dbconn, $query);
+}
+
 //database functions
 function get_article_list($dbconn){
 	$query= 
@@ -61,6 +71,7 @@ return run_query($dbconn, $query);
 
 function delete_article($dbconn, $aid) {
 	$username = $_SESSION['username'];
+	log_user_action($dbconn,$username,"article deleted");
 	$result = pg_prepare($dbconn,"","DELETE FROM articles WHERE aid=$1");
 	$result = pg_execute($dbconn,"",array(htmlspecialchars($aid)));
 	return $result;
@@ -68,6 +79,7 @@ function delete_article($dbconn, $aid) {
 
 function add_article($dbconn, $title, $content, $author) {
 	$username = $_SESSION['username'];
+	log_user_action($dbconn,$username,"article created");
 	$stub = substr($content, 0, 30);
 	$aid = str_replace(" ", "-", strtolower($title));
 	$result = pg_prepare($dbconn,"","insert into articles(aid, title, author, stub, content)
@@ -79,6 +91,7 @@ function add_article($dbconn, $title, $content, $author) {
 
 function update_article($dbconn, $title, $content, $aid) {
 	$username = $_SESSION['username'];
+	log_user_action($dbconn,$username,"updated article");
 	$query=
 		"UPDATE articles
 		SET 
@@ -106,14 +119,6 @@ function authenticate_user($dbconn, $username, $password) {
 	return run_query($dbconn, $query);
 }
 
-function log_user_action($dbconn, $username, $action){
-	$query=
-		"INSERT INTO
-		action_log
-		VALUES
-		('".$_POST['username']."', '$action', current_timestamp)";
-	return run_query($dbconn, $query);
-}	
 #added for creation of new users for #4 
 function new_user($dbconn,$username,$password){
 	#note add functionality for hashed passwords for #5
@@ -125,7 +130,5 @@ function new_user($dbconn,$username,$password){
 	
 	return $result;
 }
-
-
 ?>
 

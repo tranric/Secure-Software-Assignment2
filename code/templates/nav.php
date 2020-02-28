@@ -19,6 +19,11 @@
 <a href="/logout.php"><span class="navbar-text">Logout <?php echo $_SESSION['username'] ?></a>
 </span>
 <?php
+	} else {
+?>
+<a href="/login.php"><span class="navbar-text">Login</a>
+</span>
+<?php
 	}
 ?>
   </div>
