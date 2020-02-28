@@ -20,6 +20,7 @@ New Post <span class="fa fa-plus" aria-hidden="true"></span>
 <tr><th>Post Title</th><th>Author</th><th>Date</th><th>Modify</th><th>Delete</th></tr>
 
 <?php
+session_start();
 # get articles by user or, if role is admin, all articles
 		$result = get_article_list($dbconn, $_SESSION['username']);
 		while ($row = pg_fetch_array($result)) {
