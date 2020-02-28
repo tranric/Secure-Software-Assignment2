@@ -2,7 +2,7 @@
   <a class="navbar-brand" href="/">Blog</a>
   <div class="collapse navbar-collapse" id="navbarCollapse">
 <ul class="navbar-nav mr-auto">
-<li><a class="nav-link" href="/">Home</a><a href="/newuser.php"><span class="navbar-text">Create Account</a></li>
+<li><a class="nav-link" href="/">Home</a> <a href="/newuser.php"><span class="navbar-text">Create Account</a> <a href="/login.php"><span class="navbar-text">Log In</a></li>
 <?php 
 	if ($_SESSION['authenticated']) {
 ?>
