@@ -27,3 +27,5 @@ CREATE TABLE action_log (
 	timestamp TIMESTAMP DEFAULT NOW()
 );
 
+CREATE EXTENSION pgcrypto;
+
