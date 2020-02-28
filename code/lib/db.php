@@ -114,4 +114,17 @@ function log_user_action($dbconn, $username, $action){
 		('".$_POST['username']."', '$action', current_timestamp)";
 	return run_query($dbconn, $query);
 }	
+#added for creation of new users for #4 
+function new_user($dbconn,$username,$password){
+	#note add functionality for hashed passwords for #5
+	$result = pg_prepare($dbconn,"","insert into authors(username,password) values ($1,$2)");
+	$result = pg_execute($dbconn,"",array($username,$password));
+	
+	$result  = pg_prepare($dbconn,"","select * from authors where username=$1");
+	$result  = pg_execute($dbconn,"",array($username));
+	
+	return $result;
+}
+
 ?>
+
