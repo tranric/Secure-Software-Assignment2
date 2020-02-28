@@ -38,7 +38,7 @@ function get_article_list($dbconn, $username){
 	#gets role from username
 	$role = pg_prepare($dbconn,"","select role from authors where username =$1");
 	$role = pg_execute($dbconn,"",array($username));
-	/*
+	
 	
 	#if admin use same statement showing all
 	if ($role =='admin'){
@@ -51,7 +51,7 @@ function get_article_list($dbconn, $username){
 		articles.stub as stub
 		FROM articles INNER JOIN authors ON
 		articles.author = authors.id
-		ORDER BY date DESC");
+		ORDER BY date DESC";
 		#$result = pg_execute($dbconn,"",array());
 		#return $result;
 		return run_query($dbconn, $query);
@@ -69,15 +69,18 @@ function get_article_list($dbconn, $username){
 		articles 
 		INNER JOIN 
 		authors ON articles.author = authors.id
-		WHERE username = '".$_POST['username']."'
+		
 		ORDER BY
-		date DESC");
+		date DESC";
+		#where authors.role = $1
+		#WHERE author.username = '".$_POST['username']."' FROM authors
+
 		#$result = pg_execute($dbconn,"",array($role));
 		#return $result;
 		return run_query($dbconn, $query);
 	}
-	*/
 	
+	/*
 		$query= 
 		"SELECT 
 		articles.created_on as date,
@@ -92,7 +95,7 @@ function get_article_list($dbconn, $username){
 		ORDER BY
 		date DESC";
 return run_query($dbconn, $query);
-
+*/
 
 }
 
