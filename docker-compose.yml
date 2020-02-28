@@ -10,7 +10,7 @@ services:
     volumes:
       - ./code:/code
       - ./site.conf:/etc/nginx/conf.d/site.conf
-      - /data/certs:/etc/nginx/certs
+      - ./ssl/certs:/etc/nginx/certs
     links:
       - php
 
