@@ -22,7 +22,7 @@ CREATE TABLE articles (
 );
 
 CREATE TABLE action_log (
-	user TEXT NOT NULL,
+	username TEXT NOT NULL,
 	action TEXT NOT NULL,
 	timestamp TIMESTAMP DEFAULT NOW()
 );
