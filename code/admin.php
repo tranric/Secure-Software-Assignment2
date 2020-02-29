@@ -1,5 +1,6 @@
 <?php include("templates/page_header.php");?>
 <?php include("lib/auth.php") ?>
+<?php session_start(['csrf_rewrite'=>SESSION_CSRF_POST, 'csrf_validate'=SESSION_CSRF_POST]); ?>
 <!doctype html>
 <html lang="en">
 <head>
