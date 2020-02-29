@@ -14,7 +14,7 @@ CREATE TABLE articles (
 	created_on TIMESTAMP DEFAULT NOW(),
 	aid TEXT NOT NULL UNIQUE,
 	title TEXT NOT NULL UNIQUE,
-	author INTEGER NOT NULL,
+	author TEXT NOT NULL,
 	stub TEXT,
 	content TEXT,
 	PRIMARY KEY (id),

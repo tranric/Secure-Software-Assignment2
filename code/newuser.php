@@ -1,5 +1,5 @@
 <?php include("templates/page_header.php");?>
-<?php session_start(['csrf_rewrite'=>SESSION_CSRF_POST, 'csrf_validate'=SESSION_CSRF_POST]); ?>
+<?php session_start(['csrf_rewrite'=>'SESSION_CSRF_POST', 'csrf_validate'=>'SESSION_CSRF_POST']); ?>
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
