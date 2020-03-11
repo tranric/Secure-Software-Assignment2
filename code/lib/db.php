@@ -50,7 +50,7 @@ function get_article_list($dbconn, $username){
 		authors.username as author,
 		articles.stub as stub
 		FROM articles INNER JOIN authors ON
-		articles.author = authors.id
+		articles.id = authors.id
 		ORDER BY date DESC";
 		#$result = pg_execute($dbconn,"",array());
 		#return $result;
@@ -68,7 +68,7 @@ function get_article_list($dbconn, $username){
 		FROM 
 		articles 
 		INNER JOIN 
-		authors ON articles.author = authors.id
+		authors ON articles.id = authors.id
 		
 		ORDER BY
 		date DESC";
@@ -110,7 +110,7 @@ function get_article_list_index_page($dbconn){
 		FROM
 		articles
 		INNER JOIN
-		authors ON articles.author=authors.id
+		authors ON articles.id=authors.id
 		ORDER BY
 		date DESC";
 return run_query($dbconn, $query);
@@ -128,7 +128,7 @@ function get_article($dbconn, $aid) {
 		FROM 
 		articles
 		INNER JOIN
-		authors ON articles.author=authors.id
+		authors ON articles.id=authors.id
 		WHERE
 		aid='".$aid."'
 		LIMIT 1";

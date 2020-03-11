@@ -17,8 +17,8 @@ CREATE TABLE articles (
 	author TEXT NOT NULL,
 	stub TEXT,
 	content TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY (author) REFERENCES authors (id) 
+	PRIMARY KEY (aid),
+	FOREIGN KEY (id) REFERENCES authors (id) 
 );
 
 CREATE TABLE action_log (
