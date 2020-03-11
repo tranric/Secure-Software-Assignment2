@@ -21,11 +21,13 @@ CREATE TABLE articles (
 	FOREIGN KEY (author) REFERENCES authors (id) 
 );
 
+CREATE EXTENSION pgcrypto;
+
 CREATE TABLE action_log (
 	username TEXT NOT NULL,
 	action TEXT NOT NULL,
 	timestamp TIMESTAMP DEFAULT NOW()
 );
 
-CREATE EXTENSION pgcrypto;
+
 
